@@ -1,10 +1,15 @@
-import Template from '../containers/Template';
+import Home from '../containers/Home';
+import Profile from '../containers/Profile';
 
 export const routes = [
   {
     path: '/',
-    component: Template
-  }
+    component: Home
+  },
+  {
+    path: '/profile',
+    component: Profile
+  },
 ]
 
 
