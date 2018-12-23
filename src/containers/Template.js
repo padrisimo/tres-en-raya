@@ -16,16 +16,16 @@ export default class Template extends Component {
         <div>
           <header>
             <h1>Tres en Raya</h1>
-          </header>
-          <main>
-            {this.props.children}
             <Button
               variant="contained"
               color="primary"
               onClick={()=> alert("na na na batman!")}
             >
-              pedo
+              batman
             </Button>
+          </header>
+          <main>
+            {this.props.children}
           </main>
         </div>
       </MuiThemeProvider>
