@@ -10,6 +10,8 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 import Menu from '@material-ui/icons/Menu';
 import Person from '@material-ui/icons/Person';
 import Divider from '@material-ui/core/Divider';
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
 
 
 const useStyles = makeStyles({
@@ -24,7 +26,7 @@ const useStyles = makeStyles({
 function NavDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    left: true
+    left: false
   });
 
   const toggleDrawer = (side, open) => () => {
@@ -34,14 +36,18 @@ function NavDrawer() {
   const sideList = (
     <div className={classes.list}>
       <List>
-        <ListItem button>
-          <ListItemIcon>{<PlayArrow />}</ListItemIcon>
-          <ListItemText primary={"Play"} />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>{<Person />}</ListItemIcon>
-          <ListItemText primary={"Profile"} />
-        </ListItem>
+        <Link component={RouterLink} underline="none" to="/">
+          <ListItem button>
+            <ListItemIcon>{<PlayArrow />}</ListItemIcon>
+            <ListItemText primary={"Play"} />
+          </ListItem>
+        </Link>
+        <Link component={RouterLink} underline="none" to="/profile">
+          <ListItem button>
+            <ListItemIcon>{<Person />}</ListItemIcon>
+            <ListItemText primary={"Profile"} />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );
@@ -53,14 +59,14 @@ function NavDrawer() {
         open={state.left}
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
-      > 
+      >
         <div
           tabIndex={0}
           role="button"
           onClick={toggleDrawer('left', false)}
           onKeyDown={toggleDrawer('left', false)}
-        > 
-        <div>login container</div>
+        >
+          <div>login container</div>
           <Divider />
           {sideList}
         </div>
