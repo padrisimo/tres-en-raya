@@ -1,10 +1,10 @@
-import Home from '../containers/Home';
+import Game from '../containers/Game';
 import Profile from '../containers/Profile';
 
 export const routes = [
   {
     path: '/',
-    component: Home
+    component: Game
   },
   {
     path: '/profile',

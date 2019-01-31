@@ -12,6 +12,21 @@ import Person from '@material-ui/icons/Person';
 import Divider from '@material-ui/core/Divider';
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@material-ui/core/Link';
+import Styled from 'styled-components';
+import Typography from '@material-ui/core/Typography';
+
+
+const Header = Styled.div`
+  display: flex;
+`;
+
+const Title = Styled.div`
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding-top: .5em;
+  justify-content: center;
+`;
 
 
 const useStyles = makeStyles({
@@ -54,7 +69,12 @@ function NavDrawer() {
 
   return (
     <div>
-      <IconButton onClick={toggleDrawer('left', true)}><Menu /></IconButton>
+      <Header>
+        <IconButton onClick={toggleDrawer('left', true)}><Menu /></IconButton>
+        <Title>
+          <Typography variant="h5" gutterBottom>Juega al 3 en Raya</Typography>
+        </Title>
+      </Header>
       <SwipeableDrawer
         open={state.left}
         onClose={toggleDrawer('left', false)}

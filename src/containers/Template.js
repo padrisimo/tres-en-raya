@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import NavDrawer from '../components/NavDrawer';
 
 const theme = createMuiTheme({
