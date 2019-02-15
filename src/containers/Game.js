@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { Stage } from 'react-konva';
-import { Board } from '../styled/Game';
+import { Board, WrapGame, Squares } from '../styled/Game';
 
 export default class Game extends Component {
 
@@ -14,15 +13,17 @@ export default class Game extends Component {
     let width = window.innerWidth;
     let size = (height < width) ? height * .7 : width * .7;
     let rows = this.state.rows;
-    let unit = size / rows;
+    const unit = size / rows;
+    const coordinates = rows.map(y => rows.map(x => ([x * unit, y * unit])));
 
     this.setState({
       size,
-      unit
+      unit,
+      coordinates
     })
   }
 
-  move = () => { }
+  move = (marker, index) => { console.log('move made', marker, index)}
 
   makeAiMove = () => { }
 
@@ -31,20 +32,28 @@ export default class Game extends Component {
   recordGame = () => { }
 
   render() {
-    const { rows, unit, size } = this.state;
+    const { rows, unit, size, coordinates, gameState, win, gameOver, yourTurn, ownMark } = this.state;
     return (
       <div>
-        <Typography variant="body1" gutterBottom>
-          Game
-      </Typography>
-        <Stage width={size} height={size}>
-          <Board
-            rows={rows}
+        <WrapGame>
+          <Stage width={size} height={size}>
+            <Board
+              rows={rows}
+              unit={unit}
+              size={size}
+            />
+          <Squares 
             unit={unit}
-            size={size}
+            coordinates={coordinates}
+            gameState={gameState}
+            gameOver={gameOver}
+            yourTurn={yourTurn}
+            ownMark={ownMark}
+            move={this.move}
+            win={win}
           />
-          {/* squares */}
-        </Stage>
+          </Stage>
+        </WrapGame>
       </div>
     )
   }

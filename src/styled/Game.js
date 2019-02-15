@@ -1,5 +1,15 @@
 import React, { Fragment } from 'react';
 import { Layer, Line } from 'react-konva';
+import Styled from 'styled-components'
+
+export const WrapGame = Styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+  @media only screen and (min-width: 768px) {
+   margin-left: 3em;
+}
+`;
 
 export const Board = ({ unit, size, rows }) => {
   const stroke = 'grey';
@@ -14,7 +24,7 @@ export const Board = ({ unit, size, rows }) => {
         strokeWidth={strokeWidth}
       />
       <Line
-        points={[0, position, size , position]}
+        points={[0, position, size, position]}
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
@@ -27,3 +37,10 @@ export const Board = ({ unit, size, rows }) => {
   )
 }
 
+export const Squares = ({ unit, size, coordinates, gameState, win, gameOver, yourTurn, ownMark }) => {
+  return (
+    <Layer>
+      <Text />
+    </Layer>
+  )
+}
