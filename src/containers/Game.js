@@ -13,8 +13,9 @@ export default class Game extends Component {
     let width = window.innerWidth;
     let size = (height < width) ? height * .7 : width * .7;
     let rows = this.state.rows;
+    let rowsAr = new Array(rows);
     const unit = size / rows;
-    const coordinates = rows.map(y => rows.map(x => ([x * unit, y * unit])));
+    const coordinates = rowsAr.map(y => rowsAr.map(x => ([x * unit, y * unit])));
 
     this.setState({
       size,
@@ -23,7 +24,7 @@ export default class Game extends Component {
     })
   }
 
-  move = (marker, index) => { console.log('move made', marker, index)}
+  move = (marker, index) => { console.log('move made', marker, index) }
 
   makeAiMove = () => { }
 
@@ -42,16 +43,16 @@ export default class Game extends Component {
               unit={unit}
               size={size}
             />
-          <Squares 
-            unit={unit}
-            coordinates={coordinates}
-            gameState={gameState}
-            gameOver={gameOver}
-            yourTurn={yourTurn}
-            ownMark={ownMark}
-            move={this.move}
-            win={win}
-          />
+            <Squares
+              unit={unit}
+              coordinates={coordinates}
+              gameState={gameState}
+              gameOver={gameOver}
+              yourTurn={yourTurn}
+              ownMark={ownMark}
+              move={this.move}
+              win={win}
+            />
           </Stage>
         </WrapGame>
       </div>
