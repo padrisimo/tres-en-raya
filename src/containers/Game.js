@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import { Stage } from 'react-konva';
+import { Stage, Text, Layer } from 'react-konva';
 import { Board, WrapGame, Squares } from '../styled/Game';
 
 export default class Game extends Component {
 
   state = {
     rows: 3,
+    gameState: new Array(9).fill(false),
+    ownMark: 'X',
+    otherMark: 'O',
+    gameOver: false,
+    yourTurn: true,
+    winner: false,
+    win: false
   }
+
 
   componentWillMount = () => {
     let height = window.innerHeight;
     let width = window.innerWidth;
     let size = (height < width) ? height * .7 : width * .7;
     let rows = this.state.rows;
-    let rowsAr = new Array(rows);
     const unit = size / rows;
-    const coordinates = rowsAr.map(y => rowsAr.map(x => ([x * unit, y * unit])));
-
+    let coordinates = []
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < rows; x++) {
+        coordinates.push([x*unit, y*unit])
+      }
+    }
     this.setState({
       size,
       unit,
@@ -33,7 +44,17 @@ export default class Game extends Component {
   recordGame = () => { }
 
   render() {
-    const { rows, unit, size, coordinates, gameState, win, gameOver, yourTurn, ownMark } = this.state;
+    const {
+      size,
+      unit,
+      rows,
+      coordinates,
+      gameState,
+      win,
+      gameOver,
+      yourTurn,
+      ownMark
+    } = this.state
     return (
       <div>
         <WrapGame>
@@ -52,6 +73,7 @@ export default class Game extends Component {
               ownMark={ownMark}
               move={this.move}
               win={win}
+              onMouseDown={() => console.log('wtf')}
             />
           </Stage>
         </WrapGame>
