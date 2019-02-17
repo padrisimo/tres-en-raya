@@ -15,6 +15,17 @@ export default class Game extends Component {
     win: false
   }
 
+  combos = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];
+
 
   componentWillMount = () => {
     let height = window.innerHeight;
@@ -36,6 +47,29 @@ export default class Game extends Component {
   }
 
   move = (marker, index) => { console.log('move made', marker, index) }
+
+  makeAiMove = (gameState) => {
+    let otherMark = this.state.otherMark
+    let openSquares = []
+    gameState.forEach( (square, index) => {
+      if(!square) {
+        openSquares.push(index)
+      }
+    })
+    let aiMove = openSquares[this.random(0, openSquares.length)]
+    this.move(aiMove,otherMark)
+  }
+
+  random = (min, max) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max-min)) + min
+  }
+
+  winChecker = gameState => this.combos.find( combo => {
+    let [a,b,c] = combo
+    return (gameState[a] === gameState[b] && gameState[a] === gameState[c] && gameState[a])
+  } )
 
   makeAiMove = () => { }
 
@@ -73,7 +107,6 @@ export default class Game extends Component {
               ownMark={ownMark}
               move={this.move}
               win={win}
-              onMouseDown={() => console.log('wtf')}
             />
           </Stage>
         </WrapGame>
