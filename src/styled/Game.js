@@ -46,7 +46,7 @@ export const Squares = ({ unit, move, coordinates, gameState, win, gameOver, you
       fill = 'lightgreen'
     }
     if (gameOver || !yourTurn || mark) {
-      makeMove = console.log('nope!');
+      makeMove = () => console.log('nope!');
     }
     return <Text 
       key={index}
