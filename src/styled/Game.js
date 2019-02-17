@@ -37,6 +37,8 @@ export const Board = ({ unit, size, rows }) => {
   )
 }
 
+
+
 export const Squares = ({ unit, move, coordinates, gameState, win, gameOver, yourTurn, ownMark }) => {
   let squareBlocks = coordinates.map((position, index) => {
     let makeMove = move
@@ -48,6 +50,7 @@ export const Squares = ({ unit, move, coordinates, gameState, win, gameOver, you
     if (gameOver || !yourTurn || mark) {
       makeMove = () => console.log('nope!');
     }
+    let handleClick = (e) => {makeMove(e.target.index, ownMark)} 
     return <Text 
       key={index}
       index={index}
@@ -59,7 +62,8 @@ export const Squares = ({ unit, move, coordinates, gameState, win, gameOver, you
       fill={fill}
       fontFamily={'Helvetica'}
       align={'center'}
-      onClick={(e)=> {makeMove(e.target.index, ownMark)} }
+      onClick={handleClick}
+      onTap={handleClick}
     />
 
   })
