@@ -45,8 +45,30 @@ export default class Game extends Component {
       coordinates
     })
   }
-
-  move = (marker, index) => { console.log('move made', marker, index) }
+  move = (index, marker) => {
+    this.setState( (prevState, prop) => {
+        let {gameState, yourTurn, gameOver, winner} = prevState
+        yourTurn = !yourTurn
+        gameState.splice(index, 1, marker)
+        let foundWin = this.winChecker(gameState)
+        if (foundWin) {
+          winner = gameState[foundWin[0]]
+        }
+        if (foundWin || !gameState.includes(false)) {
+          gameOver = true
+        }
+        if (!yourTurn && !gameOver) {
+          this.makeAiMove(gameState)
+        }
+        return {
+          gameState,
+          yourTurn,
+          gameOver,
+          win: foundWin || false,
+          winner
+        }
+    })
+  }
 
   makeAiMove = (gameState) => {
     let otherMark = this.state.otherMark
@@ -57,7 +79,9 @@ export default class Game extends Component {
       }
     })
     let aiMove = openSquares[this.random(0, openSquares.length)]
-    this.move(aiMove,otherMark)
+    setTimeout(()=>{
+      this.move(aiMove,otherMark)
+    }, 1000)
   }
 
   random = (min, max) => {
@@ -70,8 +94,6 @@ export default class Game extends Component {
     let [a,b,c] = combo
     return (gameState[a] === gameState[b] && gameState[a] === gameState[c] && gameState[a])
   } )
-
-  makeAiMove = () => { }
 
   turingTest = () => { }
 
