@@ -31,7 +31,7 @@ export default class Profile extends Component {
         index={index}
       >
         <Column>
-          {(game.winner) ? 'Won!' : "Didn't win"}
+          {(game.winner) ? 'Won!' : "You Lose"}
         </Column>
         <Column>
           "ROBOT"
