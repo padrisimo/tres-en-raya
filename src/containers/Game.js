@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Stage, Text, Layer } from 'react-konva';
+import { Stage } from 'react-konva';
 import { Board, WrapGame, Squares } from '../styled/Game';
 
 export default class Game extends Component {

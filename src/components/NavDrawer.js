@@ -12,19 +12,20 @@ import Person from '@material-ui/icons/Person';
 import Divider from '@material-ui/core/Divider';
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@material-ui/core/Link';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 
 
-const Header = Styled.div`
+const Header = styled.div`
   display: flex;
 `;
 
-const Title = Styled.div`
+const Title = styled.div`
   flex: 1;
   display: flex;
   align-items: flex-end;
   padding-top: .5em;
+  padding-right: 3em;
   justify-content: center;
 `;
 

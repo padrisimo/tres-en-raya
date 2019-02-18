@@ -15,6 +15,7 @@ export const Board = ({ unit, size, rows }) => {
   const stroke = 'grey';
   const strokeWidth = 5;
   const rowsArr = new Array(rows).fill(false);
+  // eslint-disable-next-line array-callback-return
   const grid = rowsArr.map((line, index) => {
     let position = unit * index;
     if (index !== 0) return (<Fragment key={index}>
